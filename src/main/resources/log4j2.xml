@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG" monitorInterval="30">
+	<Appenders>
+
+		<!-- File Appender -->
+		<RollingFile name="File" fileName="C:/Users/gianpaolo.puzo/log/GianpMess.log"
+			filePattern="logs/gianpLog-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %C - %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</Appenders>
+
+
+	<Loggers>
+		<!-- Log everything in custom package -->
+		<Logger name="com.application" level="DEBUG" additivity="false">
+			<AppenderRef ref="File" />
+		</Logger>
+
+		<!-- Log everything in Spring Boot -->
+		<Logger name="org.springframework.boot" level="DEBUG"
+			additivity="false">
+			<AppenderRef ref="File" />
+		</Logger>
+
+		<!-- Log everything in Spring Core -->
+		<Logger name="org.springframework.core" level="DEBUG"
+			additivity="false">
+			<AppenderRef ref="File" />
+		</Logger>
+		
+		<Root level="DEBUG">
+			<AppenderRef ref="File" />
+		</Root>
+
+	</Loggers>
+
+</Configuration>
